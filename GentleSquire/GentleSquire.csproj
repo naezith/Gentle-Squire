@@ -12,4 +12,16 @@
     <PackageReference Include="Flurl.Http" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="resources\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\token">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\token_example">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

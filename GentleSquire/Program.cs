@@ -5,11 +5,15 @@ using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using System.Timers;
 using DSharpPlus.Entities;
+using System.IO;
+using System.Linq;
 
 namespace GentleSquire
 {
     class Program
     {
+		private const string TOKEN_PATH = "resources/token";
+
         public static DiscordClient _client;
         static CommandsNextModule _commands;
 
@@ -23,7 +27,7 @@ namespace GentleSquire
         {
             _client = new DiscordClient(new DiscordConfiguration
             {
-                Token = "NDEzMDU5NTg5MTk4ODM5ODE4.DWsP-Q.PAVmA6Tf7n5jc1ggPozXQVkJ6To",
+                Token = File.ReadLines(TOKEN_PATH).First(),
                 TokenType = TokenType.Bot,
                 UseInternalLogHandler = true,
                 LogLevel = LogLevel.Debug

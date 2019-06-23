@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Timers;
 using System.Collections.Generic;
 using System.Text;
@@ -20,118 +20,118 @@ namespace GentleSquire
         public static int ILCounter = 0;
         public static int SpeedrunCounter = 0;
         public static ulong channelID = 413289773373849601;
-        public static string ILPostLink = "http://ron.naezith.com/fetchleaderboard";
-        public static string SpeedrunPostLink = "http://ron.naezith.com/fetchSpeedrunLB";
-        public static string ogPath = @"C:\temp\";
-        public static string JadePath = ogPath + @"Jade\";
-        public static string SandPath = ogPath + @"Sand\";
-        public static string MetalPath = ogPath + @"Metal\";
-        public static string CrystalPath = ogPath + @"Crystal\";
-        public static string SecretPath = ogPath + @"Secret\";
-        public static string GeneralPath = ogPath + @"General\";
+        public static string ILPostLink = "http://localhost/fetchLeaderboard";
+        public static string SpeedrunPostLink = "http://localhost/fetchSpeedrunLB";
+        public static string ogPath = Path.Combine(Directory.GetCurrentDirectory(), "db");
+        public static string JadePath = Path.Combine(ogPath, "Jade");
+        public static string SandPath = Path.Combine(ogPath, "Sand");
+        public static string MetalPath = Path.Combine(ogPath, "Metal");
+        public static string CrystalPath = Path.Combine(ogPath, "Crystal");
+        public static string SecretPath = Path.Combine(ogPath, "Secret");
+        public static string GeneralPath = Path.Combine(ogPath, "General");
 
         public static Tuple<int, string, string>[] LevelInfo = {
-            Tuple.Create(437, "Threshold", JadePath + @"Threshold" + ".txt"),
-            Tuple.Create(383, "Ponddle", JadePath + @"Ponddle" + ".txt"),
-            Tuple.Create(433, "Soggy", JadePath + @"Soggy" + ".txt"),
-            Tuple.Create(406, "Sewers", JadePath + @"Sewers" + ".txt"),
-            Tuple.Create(463, "Swishflush", JadePath + @"Swishflush" + ".txt"),
-            Tuple.Create(404, "Lush", JadePath + @"Lush" + ".txt"),
-            Tuple.Create(403, "Trempe", JadePath + @"Trempe" + ".txt"),
-            Tuple.Create(157, "The Gap", JadePath + @"The Gap" + ".txt"),
-            Tuple.Create(143, "Conduit", JadePath + @"Conduit" + ".txt"),
-            Tuple.Create(405, "Wind Up", JadePath + @"Wind Up" + ".txt"),
-            Tuple.Create(487, "Memorial", JadePath + @"Memorial" + ".txt"),
-            Tuple.Create(164, "Potential", JadePath + @"Potential" + ".txt"),
-            Tuple.Create(414, "Waste Pit", JadePath + @"Waste Pit" + ".txt"),
-            Tuple.Create(154, "Flea", JadePath + @"Flea" + ".txt"),
-            Tuple.Create(408, "Chasm", JadePath + @"Chasm" + ".txt"),
-            Tuple.Create(145, "Shinespark", JadePath + @"Shinespark" + ".txt"),
-            Tuple.Create(190, "Cliffside", JadePath + @"Cliffside" + ".txt"),
-            Tuple.Create(156, "Classy", JadePath + @"Classy" + ".txt"),
-            Tuple.Create(420, "Self Control", JadePath + @"Self Control" + ".txt"),
-            Tuple.Create(149, "Plunge", JadePath + @"Plunge" + ".txt"),
+            Tuple.Create(437, "Threshold", Path.Combine(JadePath, "Threshold" + ".txt")),
+            Tuple.Create(383, "Ponddle", Path.Combine(JadePath, "Ponddle" + ".txt")),
+            Tuple.Create(433, "Soggy", Path.Combine(JadePath, "Soggy" + ".txt")),
+            Tuple.Create(406, "Sewers", Path.Combine(JadePath, "Sewers" + ".txt")),
+            Tuple.Create(463, "Swishflush", Path.Combine(JadePath, "Swishflush" + ".txt")),
+            Tuple.Create(404, "Lush", Path.Combine(JadePath, "Lush" + ".txt")),
+            Tuple.Create(403, "Trempe", Path.Combine(JadePath, "Trempe" + ".txt")),
+            Tuple.Create(157, "The Gap", Path.Combine(JadePath, "The Gap" + ".txt")),
+            Tuple.Create(143, "Conduit", Path.Combine(JadePath, "Conduit" + ".txt")),
+            Tuple.Create(405, "Wind Up", Path.Combine(JadePath, "Wind Up" + ".txt")),
+            Tuple.Create(487, "Memorial", Path.Combine(JadePath, "Memorial" + ".txt")),
+            Tuple.Create(164, "Potential", Path.Combine(JadePath, "Potential" + ".txt")),
+            Tuple.Create(414, "Waste Pit", Path.Combine(JadePath, "Waste Pit" + ".txt")),
+            Tuple.Create(154, "Flea", Path.Combine(JadePath, "Flea" + ".txt")),
+            Tuple.Create(408, "Chasm", Path.Combine(JadePath, "Chasm" + ".txt")),
+            Tuple.Create(145, "Shinespark", Path.Combine(JadePath, "Shinespark" + ".txt")),
+            Tuple.Create(190, "Cliffside", Path.Combine(JadePath, "Cliffside" + ".txt")),
+            Tuple.Create(156, "Classy", Path.Combine(JadePath, "Classy" + ".txt")),
+            Tuple.Create(420, "Self Control", Path.Combine(JadePath, "Self Control" + ".txt")),
+            Tuple.Create(149, "Plunge", Path.Combine(JadePath, "Plunge" + ".txt")),
 
-            Tuple.Create(488, "Wish", SandPath + @"Wish" + ".txt"),
-            Tuple.Create(121, "Roundabout", SandPath + @"Roundabout" + ".txt"),
-            Tuple.Create(150, "The Swing", SandPath + @"The Swing" + ".txt"),
-            Tuple.Create(331, "Buried", SandPath + @"Buried" + ".txt"),
-            Tuple.Create(242, "Razorback", SandPath + @"Razorback" + ".txt"),
-            Tuple.Create(193, "Sideswipe", SandPath + @"Sideswipe" + ".txt"),
-            Tuple.Create(390, "Spin", SandPath + @"Spin" + ".txt"),
-            Tuple.Create(202, "Yard", SandPath + @"Yard" + ".txt"),
-            Tuple.Create(380, "Flipflop", SandPath + @"Flipflop" + ".txt"),
-            Tuple.Create(233, "Pandora", SandPath + @"Pandora" + ".txt"),
-            Tuple.Create(262, "Redmire", SandPath + @"Redmire" + ".txt"),
-            Tuple.Create(160, "Palace", SandPath + @"Palace" + ".txt"),
-            Tuple.Create(317, "Corrosion", SandPath + @"Corrosion" + ".txt"),
-            Tuple.Create(309, "The Hill", SandPath + @"The Hill" + ".txt"),
-            Tuple.Create(615, "Mist", SandPath + @"Mist" + ".txt"),
-            Tuple.Create(313, "Gray Cliff", SandPath + @"Gray Cliff" + ".txt"),
-            Tuple.Create(220, "Breeze", SandPath + @"Breeze" + ".txt"),
-            Tuple.Create(238, "Hadrian Wall", SandPath + @"Hadrian Wall" + ".txt"),
-            Tuple.Create(260, "Bloodpit", SandPath + @"Bloodpit" + ".txt"),
-            Tuple.Create(616, "Sunken Caves", SandPath + @"Sunken Caves" + ".txt"),
+            Tuple.Create(488, "Wish", Path.Combine(SandPath, "Wish" + ".txt")),
+            Tuple.Create(121, "Roundabout", Path.Combine(SandPath, "Roundabout" + ".txt")),
+            Tuple.Create(150, "The Swing", Path.Combine(SandPath, "The Swing" + ".txt")),
+            Tuple.Create(331, "Buried", Path.Combine(SandPath, "Buried" + ".txt")),
+            Tuple.Create(242, "Razorback", Path.Combine(SandPath, "Razorback" + ".txt")),
+            Tuple.Create(193, "Sideswipe", Path.Combine(SandPath, "Sideswipe" + ".txt")),
+            Tuple.Create(390, "Spin", Path.Combine(SandPath, "Spin" + ".txt")),
+            Tuple.Create(202, "Yard", Path.Combine(SandPath, "Yard" + ".txt")),
+            Tuple.Create(380, "Flipflop", Path.Combine(SandPath, "Flipflop" + ".txt")),
+            Tuple.Create(233, "Pandora", Path.Combine(SandPath, "Pandora" + ".txt")),
+            Tuple.Create(262, "Redmire", Path.Combine(SandPath, "Redmire" + ".txt")),
+            Tuple.Create(160, "Palace", Path.Combine(SandPath, "Palace" + ".txt")),
+            Tuple.Create(317, "Corrosion", Path.Combine(SandPath, "Corrosion" + ".txt")),
+            Tuple.Create(309, "The Hill", Path.Combine(SandPath, "The Hill" + ".txt")),
+            Tuple.Create(615, "Mist", Path.Combine(SandPath, "Mist" + ".txt")),
+            Tuple.Create(313, "Gray Cliff", Path.Combine(SandPath, "Gray Cliff" + ".txt")),
+            Tuple.Create(220, "Breeze", Path.Combine(SandPath, "Breeze" + ".txt")),
+            Tuple.Create(238, "Hadrian Wall", Path.Combine(SandPath, "Hadrian Wall" + ".txt")),
+            Tuple.Create(260, "Bloodpit", Path.Combine(SandPath, "Bloodpit" + ".txt")),
+            Tuple.Create(616, "Sunken Caves", Path.Combine(SandPath, "Sunken Caves" + ".txt")),
 
-            Tuple.Create(363, "Protos", MetalPath + @"Protos" + ".txt"),
-            Tuple.Create(239, "Splinter", MetalPath + @"Splinter" + ".txt"),
-            Tuple.Create(36 , "Stalactites", MetalPath + @"Stalactites" + ".txt"),
-            Tuple.Create(496, "Terran Core", MetalPath + @"Terran Core" + ".txt"),
-            Tuple.Create(338, "Zigzag", MetalPath + @"Zigzag" + ".txt"),
-            Tuple.Create(625, "Wall of Shear", MetalPath + @"Wall of Shear" + ".txt"),
-            Tuple.Create(353, "Force", MetalPath + @"Force" + ".txt"),
-            Tuple.Create(243, "Escape", MetalPath + @"Escape" + ".txt"),
-            Tuple.Create(325, "FTL", MetalPath + @"FTL" + ".txt"),
-            Tuple.Create(304, "Hectic", MetalPath + @"Hectic" + ".txt"),
-            Tuple.Create(348, "Scanner", MetalPath + @"Scanner" + ".txt"),
-            Tuple.Create(340, "Plumber", MetalPath + @"Plumber" + ".txt"),
-            Tuple.Create(619, "Redshift", MetalPath + @"Redshift" + ".txt"),
-            Tuple.Create(318, "Tunnel", MetalPath + @"Tunnel" + ".txt"),
-            Tuple.Create(336, "Floodgate", MetalPath + @"Floodgate" + ".txt"),
-            Tuple.Create(211, "Vertical", MetalPath + @"Vertical" + ".txt"),
-            Tuple.Create(333, "Secure", MetalPath + @"Secure" + ".txt"),
-            Tuple.Create(140, "Elevator", MetalPath + @"Elevator" + ".txt"),
-            Tuple.Create(641, "Techy", MetalPath + @"Techy" + ".txt"),
-            Tuple.Create(144, "Shaft", MetalPath + @"Shaft" + ".txt"),
+            Tuple.Create(363, "Protos", Path.Combine(MetalPath, "Protos" + ".txt")),
+            Tuple.Create(239, "Splinter", Path.Combine(MetalPath, "Splinter" + ".txt")),
+            Tuple.Create(36 , "Stalactites", Path.Combine(MetalPath, "Stalactites" + ".txt")),
+            Tuple.Create(496, "Terran Core", Path.Combine(MetalPath, "Terran Core" + ".txt")),
+            Tuple.Create(338, "Zigzag", Path.Combine(MetalPath, "Zigzag" + ".txt")),
+            Tuple.Create(625, "Wall of Shear", Path.Combine(MetalPath, "Wall of Shear" + ".txt")),
+            Tuple.Create(353, "Force", Path.Combine(MetalPath, "Force" + ".txt")),
+            Tuple.Create(243, "Escape", Path.Combine(MetalPath, "Escape" + ".txt")),
+            Tuple.Create(325, "FTL", Path.Combine(MetalPath, "FTL" + ".txt")),
+            Tuple.Create(304, "Hectic", Path.Combine(MetalPath, "Hectic" + ".txt")),
+            Tuple.Create(348, "Scanner", Path.Combine(MetalPath, "Scanner" + ".txt")),
+            Tuple.Create(340, "Plumber", Path.Combine(MetalPath, "Plumber" + ".txt")),
+            Tuple.Create(619, "Redshift", Path.Combine(MetalPath, "Redshift" + ".txt")),
+            Tuple.Create(318, "Tunnel", Path.Combine(MetalPath, "Tunnel" + ".txt")),
+            Tuple.Create(336, "Floodgate", Path.Combine(MetalPath, "Floodgate" + ".txt")),
+            Tuple.Create(211, "Vertical", Path.Combine(MetalPath, "Vertical" + ".txt")),
+            Tuple.Create(333, "Secure", Path.Combine(MetalPath, "Secure" + ".txt")),
+            Tuple.Create(140, "Elevator", Path.Combine(MetalPath, "Elevator" + ".txt")),
+            Tuple.Create(641, "Techy", Path.Combine(MetalPath, "Techy" + ".txt")),
+            Tuple.Create(144, "Shaft", Path.Combine(MetalPath, "Shaft" + ".txt")),
 
-            Tuple.Create(192, "Dismemberment", CrystalPath + @"Dismemberment" + ".txt"),
-            Tuple.Create(171, "Decay", CrystalPath + @"Decay" + ".txt"),
-            Tuple.Create(640, "Penumbra", CrystalPath + @"Penumbra" + ".txt"),
-            Tuple.Create(479, "Detour", CrystalPath + @"Detour" + ".txt"),
-            Tuple.Create(646, "Surge", CrystalPath + @"Surge" + ".txt"),
-            Tuple.Create(365, "Hope", CrystalPath + @"Hope" + ".txt"),
-            Tuple.Create(647, "Ruins", CrystalPath + @"Ruins" + ".txt"),
-            Tuple.Create(642, "Heretic", CrystalPath + @"Heretic" + ".txt"),
-            Tuple.Create(670, "Ascend", CrystalPath + @"Ascend" + ".txt"),
-            Tuple.Create(135, "Hall of Despair", CrystalPath + @"Hall of Despair" + ".txt"),
-            Tuple.Create(635, "Metamorphosis", CrystalPath + @"Metamorphosis" + ".txt"),
-            Tuple.Create(655, "Crossfire", CrystalPath + @"Crossfire" + ".txt"),
-            Tuple.Create(645, "Oldway", CrystalPath + @"Oldway" + ".txt"),
-            Tuple.Create(637, "Limbo", CrystalPath + @"Limbo" + ".txt"),
-            Tuple.Create(559, "Bandicap", CrystalPath + @"Bandicap" + ".txt"),
-            Tuple.Create(158, "Grinder", CrystalPath + @"Grinder" + ".txt"),
-            Tuple.Create(357, "Couloir", CrystalPath + @"Couloir" + ".txt"),
-            Tuple.Create(426, "Vertigo", CrystalPath + @"Vertigo" + ".txt"),
-            Tuple.Create(341, "Tower of Joy", CrystalPath + @"Tower of Joy" + ".txt"),
-            Tuple.Create(147, "Chamber", CrystalPath + @"Chamber" + ".txt"),
+            Tuple.Create(192, "Dismemberment", Path.Combine(CrystalPath, "Dismemberment" + ".txt")),
+            Tuple.Create(171, "Decay", Path.Combine(CrystalPath, "Decay" + ".txt")),
+            Tuple.Create(640, "Penumbra", Path.Combine(CrystalPath, "Penumbra" + ".txt")),
+            Tuple.Create(479, "Detour", Path.Combine(CrystalPath, "Detour" + ".txt")),
+            Tuple.Create(646, "Surge", Path.Combine(CrystalPath, "Surge" + ".txt")),
+            Tuple.Create(365, "Hope", Path.Combine(CrystalPath, "Hope" + ".txt")),
+            Tuple.Create(647, "Ruins", Path.Combine(CrystalPath, "Ruins" + ".txt")),
+            Tuple.Create(642, "Heretic", Path.Combine(CrystalPath, "Heretic" + ".txt")),
+            Tuple.Create(670, "Ascend", Path.Combine(CrystalPath, "Ascend" + ".txt")),
+            Tuple.Create(135, "Hall of Despair", Path.Combine(CrystalPath, "Hall of Despair" + ".txt")),
+            Tuple.Create(635, "Metamorphosis", Path.Combine(CrystalPath, "Metamorphosis" + ".txt")),
+            Tuple.Create(655, "Crossfire", Path.Combine(CrystalPath, "Crossfire" + ".txt")),
+            Tuple.Create(645, "Oldway", Path.Combine(CrystalPath, "Oldway" + ".txt")),
+            Tuple.Create(637, "Limbo", Path.Combine(CrystalPath, "Limbo" + ".txt")),
+            Tuple.Create(559, "Bandicap", Path.Combine(CrystalPath, "Bandicap" + ".txt")),
+            Tuple.Create(158, "Grinder", Path.Combine(CrystalPath, "Grinder" + ".txt")),
+            Tuple.Create(357, "Couloir", Path.Combine(CrystalPath, "Couloir" + ".txt")),
+            Tuple.Create(426, "Vertigo", Path.Combine(CrystalPath, "Vertigo" + ".txt")),
+            Tuple.Create(341, "Tower of Joy", Path.Combine(CrystalPath, "Tower of Joy" + ".txt")),
+            Tuple.Create(147, "Chamber", Path.Combine(CrystalPath, "Chamber" + ".txt")),
 
-            Tuple.Create(132, "Void", SecretPath + @"Void" + ".txt"),
-            Tuple.Create(188, "Bolt", SecretPath + @"Bolt" + ".txt"),
-            Tuple.Create(227, "Cube", SecretPath + @"Cube" + ".txt"),
-            Tuple.Create(314, "Boost", SecretPath + @"Boost" + ".txt"),
-            Tuple.Create(376, "Victim", SecretPath + @"Victim" + ".txt"),
-            Tuple.Create(429, "Area 1", SecretPath + @"Area 1" + ".txt"),
-            Tuple.Create(432, "A wet level name", SecretPath + @"A wet level name" + ".txt"),
-            Tuple.Create(332, "Rush", SecretPath + @"Rush" + ".txt"),
+            Tuple.Create(132, "Void", Path.Combine(SecretPath, "Void" + ".txt")),
+            Tuple.Create(188, "Bolt", Path.Combine(SecretPath, "Bolt" + ".txt")),
+            Tuple.Create(227, "Cube", Path.Combine(SecretPath, "Cube" + ".txt")),
+            Tuple.Create(314, "Boost", Path.Combine(SecretPath, "Boost" + ".txt")),
+            Tuple.Create(376, "Victim", Path.Combine(SecretPath, "Victim" + ".txt")),
+            Tuple.Create(429, "Area 1", Path.Combine(SecretPath, "Area 1" + ".txt")),
+            Tuple.Create(432, "A wet level name", Path.Combine(SecretPath, "A wet level name" + ".txt")),
+            Tuple.Create(332, "Rush", Path.Combine(SecretPath, "Rush" + ".txt")),
         };
 
         public static Tuple<int, string, string>[] SpeedrunInfo =
         {
-            Tuple.Create(1, "Jade Speedrun", JadePath + @"Jade Speedrun.txt"),
-            Tuple.Create(2, "Sand Speedrun", SandPath + @"Sand Speedrun.txt"),
-            Tuple.Create(3, "Metal Speedrun", MetalPath + @"Metal Speedrun.txt"),
-            Tuple.Create(4, "Crystal Speedrun", CrystalPath + @"Crystal Speedrun.txt"),
-            Tuple.Create(5, "All Chapters Speedrun", GeneralPath + @"All Chapters Speedrun.txt"),
+            Tuple.Create(1, "Jade Speedrun", Path.Combine(JadePath, "Jade Speedrun.txt")),
+            Tuple.Create(2, "Sand Speedrun", Path.Combine(SandPath, "Sand Speedrun.txt")),
+            Tuple.Create(3, "Metal Speedrun", Path.Combine(MetalPath, "Metal Speedrun.txt")),
+            Tuple.Create(4, "Crystal Speedrun", Path.Combine(CrystalPath, "Crystal Speedrun.txt")),
+            Tuple.Create(5, "All Chapters Speedrun", Path.Combine(GeneralPath, "All Chapters Speedrun.txt")),
         };
         #endregion
 
@@ -336,8 +336,8 @@ namespace GentleSquire
             var NewRecord = GetRunInfo(newrecord, true, "IL");
             DiscordChannel chan = await Program._client.GetChannelAsync(channelID);
 
-            TimeSpan start = new TimeSpan(00, 50, 0); //10 o'clock
-            TimeSpan end = new TimeSpan(00, 59, 59); //12 o'clock
+            TimeSpan start = new TimeSpan(00, 50, 0); 
+            TimeSpan end = new TimeSpan(00, 59, 59); 
             TimeSpan now = DateTime.Now.TimeOfDay;
 
             if ((now > start) && (now < end) && UpdateBot == false && ILCounter == 0)
@@ -469,7 +469,7 @@ namespace GentleSquire
             {
                 if (runType == "IL")
                 {
-                    name = StringBuilding.getBetweenStr(rawRecord, "\"username\":\"", "\",\"badge\"");
+                    name = StringBuilding.getBetweenStr(rawRecord, "\"username\":\"", "\",\"steam_id\"");
                     time = StringBuilding.getBetweenStr(rawRecord, "\"time\":", ",\"replay\"");
                     convertedTime = ConvertTime(time);
                     date = StringBuilding.getBetweenStr(rawRecord, "\"update_date\":\"", "T");

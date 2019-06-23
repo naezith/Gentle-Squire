@@ -13,7 +13,7 @@ namespace GentleSquire
 {
     public class Commands
     {
-        public static string SpeedRunPostLink = "http://ron.naezith.com/fetchSpeedrunLB";
+        public static string SpeedRunPostLink = "http://localhost/fetchSpeedrunLB";
         [Command("hi")]
         public async Task Hi(CommandContext ctx)
         {

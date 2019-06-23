@@ -12,7 +12,7 @@ namespace GentleSquire
 {
     class Program
     {
-		private const string TOKEN_PATH = "resources/token";
+		private const string TOKEN_PATH = "/home/Gentle-Squire/resources/token";
 
         public static DiscordClient _client;
         static CommandsNextModule _commands;

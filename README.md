@@ -2,7 +2,6 @@
 
 To build the DLL, 
 
-    in GentleSquireRevamped\GentleSquireRevamped
     dotnet run
     
 Put Discord token to

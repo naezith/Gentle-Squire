@@ -6,7 +6,7 @@ To build the DLL,
     
 Put Discord token to
 
-resources/token
+    resources/token
 
 
 To run,

@@ -1,4 +1,6 @@
-﻿namespace GentleSquire
+﻿using GentleSquire.DiscordBot;
+
+namespace GentleSquire
 {
 	class Program
 	{

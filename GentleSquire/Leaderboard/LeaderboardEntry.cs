@@ -19,7 +19,7 @@ namespace GentleSquire.Leaderboard
 		public int SpeedrunPlayerId { set { PlayerId = value; } }
 
 		[JsonProperty(PropertyName = "steam_id")]
-		public long PlayerSteamId { get; set; }
+		public string PlayerSteamId { get; set; }
 
 		[JsonProperty(PropertyName = "badge")]
 		public int PlayerBadge { get; set; }
@@ -32,6 +32,8 @@ namespace GentleSquire.Leaderboard
 		public int TimeInMilliseconds { get; set; }
 		[JsonProperty(PropertyName = "total_time")]
 		public int SpeedrunTimeInMilliseconds { set { TimeInMilliseconds = value; } }
+		[JsonProperty(PropertyName = "new_time")]
+		public int NewPersonalBestTimeInMilliseconds { set { TimeInMilliseconds = value; } }
 
 		[JsonProperty(PropertyName = "replay")]
 		public string Replay { get; set; }
@@ -53,7 +55,18 @@ namespace GentleSquire.Leaderboard
 				PlayerId == other.PlayerId
 				&& TimeInMilliseconds == other.TimeInMilliseconds
 				&& Date == other.Date
+				&& Category == other.Category
 			;
+		}
+
+		public static bool operator ==(LeaderboardEntry first, LeaderboardEntry second)
+		{
+			return first.Equals(second);
+		}
+
+		public static bool operator !=(LeaderboardEntry first, LeaderboardEntry second)
+		{
+			return !(first == second);
 		}
 	}
 }

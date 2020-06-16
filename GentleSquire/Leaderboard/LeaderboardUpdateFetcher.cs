@@ -11,54 +11,64 @@ namespace GentleSquire.Leaderboard
 	public class LeaderboardUpdateFetcher
 	{
 		private static readonly TimeSpan SINGLE_CATEGORY_UPDATE_TIMER = TimeSpan.FromSeconds(2);
+		private static readonly TimeSpan RECENT_PERSONAL_BESTS_UPDATE_TIMER = TimeSpan.FromSeconds(30);
 
 
 
-		public delegate void LeaderboardNewRecordEventHandler(object sender, LeaderboardNewRecordEventArgs e);
-		public event LeaderboardNewRecordEventHandler NewRecordEvent;
-		public event LeaderboardNewRecordEventHandler NewOldestRecordEvent;
+		public delegate void LeaderboardNewWorldRecordEventHandler(object sender, LeaderboardNewWorldRecordEventArgs e);
+		public delegate void LeaderboardNewPersonalBestEventHandler(object sender, LeaderboardNewPersonalBestEventArgs e);
+		public event LeaderboardNewWorldRecordEventHandler NewWorldRecordEvent;
+		public event LeaderboardNewWorldRecordEventHandler NewOldestRecordEvent;
+		public event LeaderboardNewPersonalBestEventHandler NewPersonalBestEvent;
 
 
 
 		private Timer _singleCategoryUpdateTimer;
+		private Timer _recentPersonalBestsUpdateTimer;
 		private int _categoryIndex;
-		private List<Category> _categories;
 		private List<LeaderboardEntry> _worldRecords;
-		private LeaderboardEntry _oldestRun;
+		private LeaderboardEntry _oldestWorldRecord;
+		private LeaderboardPersonalBestEntry _newestPersonalBest;
 
 		public LeaderboardUpdateFetcher()
 		{
-			_categories = JArray.Parse(File.ReadAllText("resources/categories.json")).ToObject<List<Category>>();
-
 			_singleCategoryUpdateTimer = new Timer(SINGLE_CATEGORY_UPDATE_TIMER.TotalMilliseconds);
 			_singleCategoryUpdateTimer.Elapsed += (s, e) => UpdateSingleCategoryAsync().Wait();
 
+			_recentPersonalBestsUpdateTimer = new Timer(RECENT_PERSONAL_BESTS_UPDATE_TIMER.TotalMilliseconds);
+			_recentPersonalBestsUpdateTimer.Elapsed += (s, e) => UpdateRecentPersonalBestsAsync().Wait();
+
 			_worldRecords = new List<LeaderboardEntry>();
+			_oldestWorldRecord = null;
+			_newestPersonalBest = null;
 		}
 
 		public void Start()
 		{
 			_categoryIndex = 0;
 			_singleCategoryUpdateTimer.Start();
+			_recentPersonalBestsUpdateTimer.Start();
+			UpdateRecentPersonalBestsAsync().Wait();
 		}
 
 		public void Stop()
 		{
 			_singleCategoryUpdateTimer.Stop();
+			_recentPersonalBestsUpdateTimer.Stop();
 		}
 
 		public async Task UpdateSingleCategoryAsync()
 		{
-			var category = _categories[_categoryIndex];
+			var category = Category.Categories[_categoryIndex];
 
 			LeaderboardEntry serverRecord;
 			switch (category.Type)
 			{
 				case Category.CategoryType.IndividualLevel:
-					serverRecord = (await LeaderboardServerHandler.GetIndividualLevelReplaysAsync(category, 0, 1)).First();
+					serverRecord = (await LeaderboardAPI.GetIndividualLevelReplaysAsync(category, 0, 1)).First();
 					break;
 				case Category.CategoryType.Speedrun:
-					serverRecord = (await LeaderboardServerHandler.GetTenSpeedrunReplaysAsync(category, 0)).First();
+					serverRecord = (await LeaderboardAPI.GetTenSpeedrunReplaysAsync(category, 0)).First();
 					break;
 				default:
 					throw new NotImplementedException();
@@ -69,7 +79,7 @@ namespace GentleSquire.Leaderboard
 			if (localRecord == null || serverRecord.TimeInMilliseconds < localRecord.TimeInMilliseconds)
 			{
 				AddLocallyStoredRecord(category, serverRecord);
-				NewRecordEvent?.Invoke(this, new LeaderboardNewRecordEventArgs
+				NewWorldRecordEvent?.Invoke(this, new LeaderboardNewWorldRecordEventArgs
 				{
 					NewRecord = serverRecord,
 					PreviousRecord = localRecord,
@@ -82,23 +92,48 @@ namespace GentleSquire.Leaderboard
 				_worldRecords.Add(localRecord);
 			}
 
-			_categoryIndex = (_categoryIndex + 1) % _categories.Count;
+			_categoryIndex = (_categoryIndex + 1) % Category.Categories.Count;
 
 			if (_categoryIndex == 0)
 			{
 				var newOldestRun = _worldRecords.Where(r => r.Date == _worldRecords.Min(r => r.Date)).First();
-				if (newOldestRun != _oldestRun)
+				if (newOldestRun != _oldestWorldRecord)
 				{
-					NewOldestRecordEvent?.Invoke(this, new LeaderboardNewRecordEventArgs
+					NewOldestRecordEvent?.Invoke(this, new LeaderboardNewWorldRecordEventArgs
 					{
 						NewRecord = newOldestRun,
-						PreviousRecord = _oldestRun,
+						PreviousRecord = _oldestWorldRecord,
 					});
 				}
-				_oldestRun = newOldestRun;
+				_oldestWorldRecord = newOldestRun;
 
 				_worldRecords.Clear();
 			}
+		}
+
+		public async Task UpdateRecentPersonalBestsAsync()
+		{
+			var recentRecords = await LeaderboardAPI.GetTenRecentPersonalBestsAsync(false);
+
+			if (_newestPersonalBest != null)
+			{
+				var numberOfEntriesToAnnounce = recentRecords.IndexOf(_newestPersonalBest);
+				if (numberOfEntriesToAnnounce == -1) // not found
+				{
+					numberOfEntriesToAnnounce = recentRecords.Count;
+				}
+
+				foreach (var announcedRecord in recentRecords.Take(numberOfEntriesToAnnounce).Reverse())
+				{
+					NewPersonalBestEvent.Invoke(this, new LeaderboardNewPersonalBestEventArgs()
+					{
+						NewPersonalBest = announcedRecord.Entry,
+						PreviousPersonalBestTimeInMilliseconds = announcedRecord.OldTime,
+					});
+				}
+			}
+
+			_newestPersonalBest = recentRecords.First();
 		}
 
 		private string GetCategoryDirectory(Category category)

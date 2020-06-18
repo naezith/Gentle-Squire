@@ -51,22 +51,17 @@ namespace GentleSquire.Leaderboard
 
 		public bool Equals(LeaderboardEntry other)
 		{
+			if (other is null)
+			{
+				return false;
+			}
+
 			return
 				PlayerId == other.PlayerId
 				&& TimeInMilliseconds == other.TimeInMilliseconds
 				&& Date == other.Date
 				&& Category == other.Category
 			;
-		}
-
-		public static bool operator ==(LeaderboardEntry first, LeaderboardEntry second)
-		{
-			return first.Equals(second);
-		}
-
-		public static bool operator !=(LeaderboardEntry first, LeaderboardEntry second)
-		{
-			return !(first == second);
 		}
 	}
 }

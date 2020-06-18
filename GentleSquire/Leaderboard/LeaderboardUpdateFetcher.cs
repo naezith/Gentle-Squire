@@ -76,7 +76,7 @@ namespace GentleSquire.Leaderboard
 
 			var localRecord = GetLocallyStoredRecord(category);
 
-			if (localRecord == null || serverRecord.TimeInMilliseconds < localRecord.TimeInMilliseconds)
+			if (localRecord is null || serverRecord.TimeInMilliseconds < localRecord.TimeInMilliseconds)
 			{
 				AddLocallyStoredRecord(category, serverRecord);
 				NewWorldRecordEvent?.Invoke(this, new LeaderboardNewWorldRecordEventArgs
@@ -97,7 +97,7 @@ namespace GentleSquire.Leaderboard
 			if (_categoryIndex == 0)
 			{
 				var newOldestRun = _worldRecords.Where(r => r.Date == _worldRecords.Min(r => r.Date)).First();
-				if (newOldestRun != _oldestWorldRecord)
+				if (!newOldestRun.Equals(_oldestWorldRecord))
 				{
 					NewOldestRecordEvent?.Invoke(this, new LeaderboardNewWorldRecordEventArgs
 					{

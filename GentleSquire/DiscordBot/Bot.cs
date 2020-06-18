@@ -94,7 +94,7 @@ namespace GentleSquire.DiscordBot
 
 		private void PostNewWorldRecordAsync(object sender, LeaderboardNewWorldRecordEventArgs e)
 		{
-			if (e.PreviousRecord == null) return;
+			if (e.PreviousRecord is null) return;
 
 			var dateDifferenceInDays = (e.NewRecord.Date - e.PreviousRecord.Date).Days;
 

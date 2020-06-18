@@ -15,7 +15,7 @@ namespace GentleSquire.Leaderboard
 		public bool Equals(LeaderboardPersonalBestEntry other)
 		{
 			return
-				this.Entry == other.Entry
+				this.Entry.Equals(other.Entry)
 				&& this.OldTime == other.OldTime
 			;
 		}

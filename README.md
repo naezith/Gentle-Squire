@@ -1,15 +1,11 @@
 # Gentle-Squire
 
-To build the DLL, 
+To run:
 
-    dotnet run
+    cd GentleSquire
+    dotnet run -c Release
     
-Put Discord token to
+Files you will need to modify:
 
-    resources/token
-
-
-To run,
-    
-    run.sh
-    
+    GentleSquire/resources/config.json
+    GentleSquire/resources/token.txt

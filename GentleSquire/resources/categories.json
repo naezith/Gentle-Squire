@@ -1,0 +1,471 @@
+[
+	{
+		"type": "IndividualLevel",
+		"id": 437,
+		"name": "Threshold",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 383,
+		"name": "Ponddle",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 433,
+		"name": "Soggy",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 406,
+		"name": "Sewers",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 463,
+		"name": "Swishflush",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 404,
+		"name": "Lush",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 403,
+		"name": "Trempe",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 157,
+		"name": "The Gap",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 143,
+		"name": "Conduit",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 405,
+		"name": "Wind Up",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 487,
+		"name": "Memorial",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 164,
+		"name": "Potential",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 414,
+		"name": "Waste Pit",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 154,
+		"name": "Flea",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 408,
+		"name": "Chasm",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 145,
+		"name": "Shinespark",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 190,
+		"name": "Cliffside",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 156,
+		"name": "Classy",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 420,
+		"name": "Self Control",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 149,
+		"name": "Plunge",
+	},
+
+	{
+		"type": "IndividualLevel",
+		"id": 488,
+		"name": "Wish",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 121,
+		"name": "Roundabout",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 150,
+		"name": "The Swing",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 331,
+		"name": "Buried",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 242,
+		"name": "Razorback",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 193,
+		"name": "Sideswipe",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 390,
+		"name": "Spin",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 202,
+		"name": "Yard",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 380,
+		"name": "Flipflop",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 233,
+		"name": "Pandora",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 262,
+		"name": "Redmire",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 160,
+		"name": "Palace",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 317,
+		"name": "Corrosion",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 309,
+		"name": "The Hill",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 615,
+		"name": "Mist",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 313,
+		"name": "Gray Cliff",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 220,
+		"name": "Breeze",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 238,
+		"name": "Hadrian Wall",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 260,
+		"name": "Bloodpit",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 616,
+		"name": "Sunken Caves",
+	},
+
+	{
+		"type": "IndividualLevel",
+		"id": 363,
+		"name": "Protos",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 239,
+		"name": "Splinter",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 36,
+		"name": "Stalactites",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 496,
+		"name": "Terran Core",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 338,
+		"name": "Zigzag",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 625,
+		"name": "Wall of Shear",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 353,
+		"name": "Force",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 243,
+		"name": "Escape",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 325,
+		"name": "FTL",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 304,
+		"name": "Hectic",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 348,
+		"name": "Scanner",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 340,
+		"name": "Plumber",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 619,
+		"name": "Redshift",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 318,
+		"name": "Tunnel",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 336,
+		"name": "Floodgate",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 211,
+		"name": "Vertical",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 333,
+		"name": "Secure",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 140,
+		"name": "Elevator",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 641,
+		"name": "Techy",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 144,
+		"name": "Shaft",
+	},
+
+	{
+		"type": "IndividualLevel",
+		"id": 192,
+		"name": "Dismemberment",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 171,
+		"name": "Decay",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 640,
+		"name": "Penumbra",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 479,
+		"name": "Detour",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 646,
+		"name": "Surge",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 365,
+		"name": "Hope",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 647,
+		"name": "Ruins",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 642,
+		"name": "Heretic",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 670,
+		"name": "Ascend",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 135,
+		"name": "Hall of Despair",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 635,
+		"name": "Metamorphosis",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 655,
+		"name": "Crossfire",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 645,
+		"name": "Oldway",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 637,
+		"name": "Limbo",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 559,
+		"name": "Bandicap",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 158,
+		"name": "Grinder",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 357,
+		"name": "Couloir",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 426,
+		"name": "Vertigo",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 341,
+		"name": "Tower of Joy",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 147,
+		"name": "Chamber",
+	},
+
+	{
+		"type": "IndividualLevel",
+		"id": 132,
+		"name": "Void",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 188,
+		"name": "Bolt",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 227,
+		"name": "Cube",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 314,
+		"name": "Boost",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 376,
+		"name": "Victim",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 429,
+		"name": "Area 1",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 432,
+		"name": "A wet level name",
+	},
+	{
+		"type": "IndividualLevel",
+		"id": 332,
+		"name": "Rush",
+	},
+	{
+		"type": "Speedrun",
+		"id": 1,
+		"name": "Jade",
+	},
+	{
+		"type": "Speedrun",
+		"id": 2,
+		"name": "Sand",
+	},
+	{
+		"type": "Speedrun",
+		"id": 3,
+		"name": "Metal",
+	},
+	{
+		"type": "Speedrun",
+		"id": 4,
+		"name": "Crystal",
+	},
+	{
+		"type": "Speedrun",
+		"id": 5,
+		"name": "All Chapters",
+	},
+]

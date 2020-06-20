@@ -2,9 +2,10 @@
 
 To run:
 
+    cd GentleSquire
     dotnet run -c Release
     
 Files you will need to modify:
 
-    resources/config.json
-    resources/token.txt
+    GentleSquire/resources/config.json
+    GentleSquire/resources/token.txt

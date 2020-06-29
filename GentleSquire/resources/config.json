@@ -1,7 +1,7 @@
 {
 	"TokenPath": "resources/token.txt",
 
-	"MessageQueueTimeInMilliseconds": 2000,
+	"MessageQueueTimeInMilliseconds": 10000,
 
 	"WorldRecordUpdatesChannelId": 413289773373849601,
 	"PersonalBestUpdatesChannelId": 689133906301419524,

@@ -28,6 +28,7 @@ namespace GentleSquire.DiscordBot
 
 		private DiscordChannel _worldRecordUpdatesChannel;
 		private DiscordChannel _personalBestUpdatesChannel;
+		private DiscordChannel _exceptionOutputChannel;
 
 		public Bot()
 		{
@@ -45,6 +46,7 @@ namespace GentleSquire.DiscordBot
 					LogLevel.Info,
 #endif
 			});
+			_client.ClientErrored += ErrorCallback;
 
 			_leaderboardUpdateFetcher = new LeaderboardUpdateFetcher();
 			_leaderboardUpdateFetcher.NewWorldRecordEvent += PostNewWorldRecordAsync;
@@ -73,8 +75,20 @@ namespace GentleSquire.DiscordBot
 
 		private async Task OnReady(ReadyEventArgs e)
 		{
-			_worldRecordUpdatesChannel = await _client.GetChannelAsync(_config.WorldRecordUpdatesChannelId);
-			_personalBestUpdatesChannel = await _client.GetChannelAsync(_config.PersonalBestUpdatesChannelId);
+			if (_config.WorldRecordUpdatesChannelId != 0)
+			{
+				_worldRecordUpdatesChannel = await _client.GetChannelAsync(_config.WorldRecordUpdatesChannelId);
+			}
+
+			if (_config.PersonalBestUpdatesChannelId != 0)
+			{
+				_personalBestUpdatesChannel = await _client.GetChannelAsync(_config.PersonalBestUpdatesChannelId);
+			}
+
+			if (_config.ExceptionOutputChannelId != 0)
+			{
+				_exceptionOutputChannel = await _client.GetChannelAsync(_config.ExceptionOutputChannelId);
+			}
 
 			_leaderboardUpdateFetcher.Start();
 
@@ -95,6 +109,7 @@ namespace GentleSquire.DiscordBot
 		private void PostNewWorldRecordAsync(object sender, LeaderboardNewWorldRecordEventArgs e)
 		{
 			if (e.PreviousRecord is null) return;
+			if (_worldRecordUpdatesChannel is null) return;
 
 			var dateDifferenceInDays = (e.NewRecord.Date - e.PreviousRecord.Date).Days;
 
@@ -115,6 +130,8 @@ namespace GentleSquire.DiscordBot
 
 		private async void UpdateOldestRecordTopicAsync(object sender, LeaderboardNewWorldRecordEventArgs e)
 		{
+			if (_worldRecordUpdatesChannel is null) return;
+
 			var ageInDays = (DateTime.UtcNow - e.NewRecord.Date).Days;
 
 			var topic = new StringBuilder();
@@ -132,9 +149,20 @@ namespace GentleSquire.DiscordBot
 
 		private void PostNewPersonalBestAsync(object sender, LeaderboardNewPersonalBestEventArgs e)
 		{
+			if (_personalBestUpdatesChannel is null) return;
+
 			var content = $"**{e.NewPersonalBest.Category.Name} - [{TimeToString(e.NewPersonalBest.TimeInMilliseconds)}] :tada: {e.NewPersonalBest.PlayerUsername}** improved their time by **{TimeToString(e.PreviousPersonalBestTimeInMilliseconds - e.NewPersonalBest.TimeInMilliseconds)}**";
 
 			EnqueueMessage(_personalBestUpdatesChannel, content.ToString());
+		}
+
+		private Task ErrorCallback(ClientErrorEventArgs e)
+		{
+			if (_exceptionOutputChannel is null) return Task.CompletedTask;
+
+			EnqueueMessage(_exceptionOutputChannel, e.Exception.ToString());
+
+			return Task.CompletedTask;
 		}
 
 		private string TimeToString(int totalMilliseconds)

@@ -24,7 +24,7 @@ namespace GentleSquire.DiscordBot
 		private LeaderboardUpdateFetcher _leaderboardUpdateFetcher;
 
 		private Timer _messageQueueTimer;
-		private Queue<QueuedMessage> _messageQueue;
+		private Queue<Task<DiscordMessage>> _messageQueue;
 
 		private DiscordChannel _worldRecordUpdatesChannel;
 		private DiscordChannel _personalBestUpdatesChannel;
@@ -58,7 +58,7 @@ namespace GentleSquire.DiscordBot
 			_messageQueueTimer = new Timer(_config.MessageQueueTimeInMilliseconds);
 			_messageQueueTimer.Elapsed += SendMessageFromQueue;
 
-			_messageQueue = new Queue<QueuedMessage>();
+			_messageQueue = new Queue<Task<DiscordMessage>>();
 
 
 
@@ -102,8 +102,7 @@ namespace GentleSquire.DiscordBot
 				return;
 			}
 
-			var queuedMessage = _messageQueue.Dequeue();
-			await _client.SendMessageAsync(queuedMessage.Channel, queuedMessage.Content);
+			await _messageQueue.Dequeue();
 		}
 
 		private void PostNewWorldRecordAsync(object sender, LeaderboardNewWorldRecordEventArgs e)
@@ -125,7 +124,7 @@ namespace GentleSquire.DiscordBot
 			}
 			content.Append($" **{TimeToString(e.PreviousRecord.TimeInMilliseconds - e.NewRecord.TimeInMilliseconds)}** (Record stood for **{dateDifferenceInDays} days!**)");
 
-			EnqueueMessage(_worldRecordUpdatesChannel, content.ToString());
+			_messageQueue.Enqueue(_client.SendMessageAsync(_worldRecordUpdatesChannel, content.ToString()));
 		}
 
 		private async void UpdateOldestRecordTopicAsync(object sender, LeaderboardNewWorldRecordEventArgs e)
@@ -153,14 +152,14 @@ namespace GentleSquire.DiscordBot
 
 			var content = $"**{e.NewPersonalBest.Category.Name} - [{TimeToString(e.NewPersonalBest.TimeInMilliseconds)}] :tada: {e.NewPersonalBest.PlayerUsername}** improved their time by **{TimeToString(e.PreviousPersonalBestTimeInMilliseconds - e.NewPersonalBest.TimeInMilliseconds)}**";
 
-			EnqueueMessage(_personalBestUpdatesChannel, content.ToString());
+			_messageQueue.Enqueue(_client.SendMessageAsync(_personalBestUpdatesChannel, content.ToString()));
 		}
 
 		private Task ErrorCallback(ClientErrorEventArgs e)
 		{
 			if (_exceptionOutputChannel is null) return Task.CompletedTask;
 
-			EnqueueMessage(_exceptionOutputChannel, e.Exception.ToString());
+			_messageQueue.Enqueue(_client.SendMessageAsync(_exceptionOutputChannel, e.Exception.ToString()));
 
 			return Task.CompletedTask;
 		}
@@ -178,11 +177,6 @@ namespace GentleSquire.DiscordBot
 			{
 				return $"{minutes}m {secondsAndMilliseconds}s";
 			}
-		}
-
-		private void EnqueueMessage(DiscordChannel channel, string content)
-		{
-			_messageQueue.Enqueue(new QueuedMessage(channel, content));
 		}
 
 		private void LogMessage(LogLevel level, string message)

@@ -15,7 +15,7 @@ namespace GentleSquire.DiscordBot
 {
 	public class Bot
 	{
-		private const string BOT_CONFIG_PATH = "resources/config.json";
+		private const string BOT_CONFIG_PATH = "resources/config/config.json";
 
 
 

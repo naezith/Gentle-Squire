@@ -1,0 +1,9 @@
+{
+	"TokenPath": "resources/config/token.txt",
+
+	"MessageQueueTimeInMilliseconds": 10000,
+
+	"WorldRecordUpdatesChannelId": 520358376343708481,
+	"PersonalBestUpdatesChannelId": 563586895249683279,
+	"ExceptionOutputChannelId": 287806840969540076,
+}

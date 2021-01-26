@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel;
 using System.IO;
 
 namespace GentleSquire.DiscordBot
@@ -13,10 +14,16 @@ namespace GentleSquire.DiscordBot
 		public int MessageQueueTimeInMilliseconds { get; private set; }
 
 		[JsonProperty(PropertyName = "WorldRecordUpdatesChannelId")]
+		[DefaultValue(0)]
 		public ulong WorldRecordUpdatesChannelId { get; private set; }
 
 		[JsonProperty(PropertyName = "PersonalBestUpdatesChannelId")]
+		[DefaultValue(0)]
 		public ulong PersonalBestUpdatesChannelId { get; private set; }
+
+		[JsonProperty(PropertyName = "ExceptionOutputChannelId")]
+		[DefaultValue(0)]
+		public ulong ExceptionOutputChannelId { get; private set; }
 
 
 

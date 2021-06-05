@@ -46,7 +46,8 @@ namespace GentleSquire.DiscordBot
 					LogLevel.Info,
 #endif
 			});
-			_client.ClientErrored += ErrorCallback;
+			_client.ClientErrored += args => HandleException(args.Exception);
+			_client.SocketErrored += args => HandleException(args.Exception);
 
 			_leaderboardUpdateFetcher = new LeaderboardUpdateFetcher();
 			_leaderboardUpdateFetcher.NewWorldRecordEvent += PostNewWorldRecordAsync;
@@ -155,11 +156,12 @@ namespace GentleSquire.DiscordBot
 			_messageQueue.Enqueue(_client.SendMessageAsync(_personalBestUpdatesChannel, content.ToString()));
 		}
 
-		private Task ErrorCallback(ClientErrorEventArgs e)
+		private Task HandleException(Exception e)
 		{
-			if (_exceptionOutputChannel is null) return Task.CompletedTask;
-
-			_messageQueue.Enqueue(_client.SendMessageAsync(_exceptionOutputChannel, e.Exception.ToString()));
+			if (!(_exceptionOutputChannel is null))
+			{
+				_messageQueue.Enqueue(_client.SendMessageAsync(_exceptionOutputChannel, e.ToString()));
+			}
 
 			return Task.CompletedTask;
 		}

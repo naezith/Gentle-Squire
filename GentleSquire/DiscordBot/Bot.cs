@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -158,6 +159,11 @@ namespace GentleSquire.DiscordBot
 
 		private Task HandleException(Exception e)
 		{
+			if (e is WebSocketException)
+			{
+				return Task.CompletedTask;
+			}
+
 			if (!(_exceptionOutputChannel is null))
 			{
 				_messageQueue.Enqueue(_client.SendMessageAsync(_exceptionOutputChannel, e.ToString()));

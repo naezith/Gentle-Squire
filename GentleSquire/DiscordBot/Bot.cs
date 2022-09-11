@@ -11,7 +11,7 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using LogLevel = DSharpPlus.LogLevel;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace GentleSquire.DiscordBot
 {

@@ -3,6 +3,7 @@ using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Exceptions;
 using GentleSquire.Leaderboard;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,16 +40,15 @@ namespace GentleSquire.DiscordBot
 			{
 				Token = File.ReadLines(_config.TokenPath).First(),
 				TokenType = TokenType.Bot,
-				UseInternalLogHandler = true,
-				LogLevel =
+				MinimumLogLevel =
 #if DEBUG
 					LogLevel.Debug,
 #else
-					LogLevel.Info,
+					LogLevel.Information,
 #endif
 			});
-			_client.ClientErrored += args => HandleException(args.Exception);
-			_client.SocketErrored += args => HandleException(args.Exception);
+			_client.ClientErrored += (client, args) => HandleException(args.Exception);
+			_client.SocketErrored += (client, args) => HandleException(args.Exception);
 
 			_leaderboardUpdateFetcher = new LeaderboardUpdateFetcher();
 			_leaderboardUpdateFetcher.NewWorldRecordEvent += PostNewWorldRecordAsync;
@@ -75,7 +75,7 @@ namespace GentleSquire.DiscordBot
 			await Task.Delay(-1);
 		}
 
-		private async Task OnReady(ReadyEventArgs e)
+		private async Task OnReady(DiscordClient client, ReadyEventArgs e)
 		{
 			if (_config.WorldRecordUpdatesChannelId != 0)
 			{
@@ -94,7 +94,7 @@ namespace GentleSquire.DiscordBot
 
 			_leaderboardUpdateFetcher.Start();
 
-			LogMessage(LogLevel.Info, "Ready.");
+			LogMessage(LogLevel.Information, "Ready.");
 		}
 
 		private async void SendMessageFromQueue(object sender, ElapsedEventArgs e)
@@ -189,7 +189,7 @@ namespace GentleSquire.DiscordBot
 
 		private void LogMessage(LogLevel level, string message)
 		{
-			_client.DebugLogger.LogMessage(level, "Bot", message, DateTime.Now);
+			_client.Logger.Log(level, "{}", message);
 		}
 	}
 }
